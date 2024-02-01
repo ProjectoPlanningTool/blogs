@@ -6,15 +6,6 @@ import modules from "../toolbar";
 
 function Editor() {
 	const [value, setValue] = useState("");
-	const [focused, setFocused] = useState(false);
-
-	const handleOnFocus = () => {
-		setFocused(true);
-	};
-
-	const handleOnBlur = () => {
-		setFocused(false);
-	};
 
 	return (
 		<div className="flex justify-center items-center my-10">
@@ -34,15 +25,12 @@ function Editor() {
 					/>
 				</div>
 				<ReactQuill
-					className={focused ? "focused-editor" : "blurred-editor"}
 					theme="snow"
 					value={value}
 					onChange={setValue}
 					placeholder="What is in your mind?"
 					modules={modules}
 					style={{ width: "100%" }}
-					onFocus={handleOnFocus}
-					onBlur={handleOnBlur}
 				/>
 			</div>
 		</div>

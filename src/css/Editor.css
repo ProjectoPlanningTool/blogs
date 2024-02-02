@@ -1061,6 +1061,7 @@
   /* Custom Change*/
   position: fixed;
   top: 63px;
+  z-index: 10;
   left: 0;
   right: 0;
   background-color: wheat;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "/logo.png";
 
 function Navbar() {
@@ -5,30 +6,33 @@ function Navbar() {
 		<div className="flex justify-center items-center h-16 border-b sticky z-50 top-0 bg-white">
 			<div className="container max-w-6xl flex items-center">
 				<div className="flex-auto">
-					<a href="/">
+					<Link to="/">
 						<img
 							src={Logo}
 							alt="projecto logo"
 							className="object-cover h-16 w-16"
 						/>
-					</a>
+					</Link>
 				</div>
 				<div>
 					<ul className="flex items-center *:mx-3">
 						<li>
-							<a href="/our-story">Our Story</a>
+							<Link to="/our-story">Our Story</Link>
 						</li>
 						<li>
-							<a href="/membership">Membership</a>
+							<Link to="/membership">Membership</Link>
 						</li>
 						<li>
-							<a href="/write">Write</a>
+							<Link to="/write">Write</Link>
 						</li>
 						<li>
-							<a href="/sign-in">Sign In</a>
+							<Link to="/preview">Preview</Link>
+						</li>
+						<li>
+							<Link to="/sign-in">Sign In</Link>
 						</li>
 						<li className="bg-black text-white px-3 py-2 rounded-full">
-							<a href="/get-started">Get Started</a>
+							<Link to="/get-started">Get Started</Link>
 						</li>
 					</ul>
 				</div>

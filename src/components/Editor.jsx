@@ -1,12 +1,11 @@
-import { useState } from "react";
 import ReactQuill from "react-quill";
 import "../css/Editor.css";
 
+import useContentStore from "../store";
 import modules from "../toolbar";
 
 function Editor() {
-	const [value, setValue] = useState("");
-
+	const { html, setHTML, heading, setHeading } = useContentStore();
 	return (
 		<div className="flex justify-center items-center my-10">
 			<div className="container max-w-3xl flex items-center justify-center flex-col">
@@ -19,6 +18,8 @@ function Editor() {
 				</div>
 				<div className="w-full my-5 text-2xl font-bold border-b">
 					<input
+						value={heading}
+						onChange={(e) => setHeading(e.target.value)}
 						type="text"
 						placeholder="Heading"
 						className="px-3 py-5 w-full focus:outline-none"
@@ -26,8 +27,8 @@ function Editor() {
 				</div>
 				<ReactQuill
 					theme="snow"
-					value={value}
-					onChange={setValue}
+					value={html}
+					onChange={setHTML}
 					placeholder="What is in your mind?"
 					modules={modules}
 					style={{ width: "100%" }}

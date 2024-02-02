@@ -3,10 +3,10 @@ import Navbar from "../components/Navbar";
 
 function Layout() {
 	return (
-		<>
+		<div className="overflow-x-hidden h-screen">
 			<Navbar />
 			<Outlet />
-		</>
+		</div>
 	);
 }
 

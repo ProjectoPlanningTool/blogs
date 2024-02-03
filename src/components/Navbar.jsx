@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "/logo.png";
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
+	const drawerRef = useRef();
+
+	useEffect(() => {
+		function handleClickOutside(e) {
+			if (
+				drawerRef.current &&
+				!drawerRef.current.contains(e.target) &&
+				e.target.closest(".lg\\:hidden") === null
+			) {
+				setIsOpen(false);
+			}
+		}
+
+		document.addEventListener("mousedown", handleClickOutside);
+
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, []);
+
 	const genericHamburgerLine =
 		"h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300";
 	return (
@@ -72,6 +90,7 @@ function Navbar() {
 				className={`lg:hidden shadow-lg absolute right-0 top-0 bg-white h-screen w-3/4 trans ${
 					isOpen ? "" : "translate-x-full"
 				} transition-all duration-300`}
+				ref={drawerRef}
 			>
 				<div>
 					<ul className="flex flex-col items-start justify-center *:m-3 pt-2">

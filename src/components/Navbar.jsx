@@ -6,6 +6,7 @@ function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [profileBtn, setProfileBtn] = useState(false);
 	const drawerRef = useRef();
+	const profileMenuRef = useRef();
 
 	useEffect(() => {
 		function handleClickOutside(e) {
@@ -18,9 +19,23 @@ function Navbar() {
 			}
 		}
 
-		document.addEventListener("mousedown", handleClickOutside);
+		function handleProfileMenuFocus(e) {
+			if (
+				profileMenuRef.current &&
+				!profileMenuRef.current.contains(e.target) &&
+				e.target.closest(".max-md\\:hidden") === null
+			) {
+				setProfileBtn(false);
+			}
+		}
 
-		return () => document.removeEventListener("mousedown", handleClickOutside);
+		document.addEventListener("mousedown", handleClickOutside);
+		document.addEventListener("mousedown", handleProfileMenuFocus);
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
 	}, []);
 
 	const genericHamburgerLine =
@@ -66,8 +81,9 @@ function Navbar() {
 				{/* Profile Menu */}
 				<div
 					className={`max-md:hidden h-36 w-36 bg-slate-100 absolute right-0 top-[63px] rounded-lg flex flex-col justify-start items-end p-3 *:my-1 ${
-						profileBtn ? "-translate-y-0" : "-translate-y-52"
-					} transition-transform duration-300 z-auto`}
+						profileBtn ? "-translate-x-0" : "translate-x-96"
+					} transition-transform duration-300`}
+					ref={profileMenuRef}
 				>
 					<button
 						type="button"

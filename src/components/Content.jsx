@@ -8,7 +8,7 @@ import {
 
 function Content() {
 	return (
-		<div className="flex items-center justify-center lg:mt-14 max-md:mx-3 max-md:mt-6">
+		<div className="flex items-center justify-center md:mt-14 max-md:mx-3 max-md:mt-6">
 			<div className="container max-w-3xl flex items-center justify-center">
 				<div className="flex flex-col justify-center">
 					<h1 className="text-5xl font-extrabold">
